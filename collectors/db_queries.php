@@ -131,13 +131,15 @@ class QM_Collector_DB_Queries extends QM_Collector {
 			$total_time += $ltime;
 
 			if ( $has_trace ) {
-
 				$trace       = $query['trace'];
 				$component   = $query['trace']->get_component();
 				$caller      = $query['trace']->get_caller();
+				if ( !is_array( $caller ) ) {
+					$caller_name = 'unknown';
+					$caller      = 'unknown';
+				}
 				$caller_name = $caller['display'];
 				$caller      = $caller['display'];
-
 			} else {
 
 				$trace     = null;
